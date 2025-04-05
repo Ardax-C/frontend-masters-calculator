@@ -43,10 +43,10 @@ for (const key in calculatorKeys) {
 }
 
 const numberKey = document.querySelectorAll('.btn-num')
+const operationBtn = document.querySelectorAll('.btn-operation')
 const display = document.querySelector('.btn-display')
 const backspace = document.querySelector('.btn-backspace')
 const clear = document.querySelector('.btn-clear')
-const operationBtn = document.querySelectorAll('.btn-operation')
 
 function clearActiveOperations() {
     operationBtn.forEach(btn => {

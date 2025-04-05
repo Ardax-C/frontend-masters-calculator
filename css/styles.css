@@ -40,6 +40,7 @@ body {
     padding-left: 10px; 
     overflow: scroll;
     user-select: text;
+    font-size: 1.5rem;
 }
 
 .btn-clear {
