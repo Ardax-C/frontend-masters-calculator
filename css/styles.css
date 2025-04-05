@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: rgb(19, 26, 32);
+    background-color: #070a0f; 
 }
 
 .container {
@@ -14,139 +14,180 @@ body {
     height: 400px;
     display: grid;
     margin-top: 200px;
-    grid-template: repeat(6, 1fr) / repeat(4, 1fr);
-    box-shadow: 0 0 5px rgb(233, 213, 181);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas: 
+        "display display display   display"
+        "clear   clear   backspace multiply"
+        "nine    eight   seven     divide"
+        "six     five    four      add"
+        "three   two     one       subtract"
+        "decimal zero    equals    equals";
+    box-shadow: 0 0 15px rgba(255, 43, 125, 0.4); 
+    border-radius: 8px;
+    background-color: #131a20;
+    padding: 2px;
 }
 
 .btn-key {
     border: none;
     width: 100%;
     height: 100%;
-    background-color: rgb(60, 67, 70);
+    background-color: #1e2630; 
     color: white;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.1s ease;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.7);
+    box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.15),
+        0 2px 0 #121920,
+        0 3px 3px rgba(0,0,0,0.3);
 }
 
 .btn-key:hover {
-    background-color: rgb(111, 120, 118);
+    background-color: #2a3440;
     cursor: pointer;
 }
 
+.btn-key:active {
+    box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        0 1px 0 #121920;
+    transform: translateY(2px);
+}
+
+/* Glass display styling */
 .btn-display {
-    background-color: black;
-    color: rgb(71, 157, 215);
-    grid-column: 1 / span 4;
-    grid-row: 1;
+    background-color: rgba(12, 16, 25, 0.9); 
+    color: #4a9df4;
+    grid-area: display;
     text-align: right;
     padding-right: 10px;
     padding-left: 10px; 
     overflow: scroll;
     user-select: text;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    box-shadow: 
+        inset 0 0 10px rgba(0,0,0,0.8),
+        inset 0 0 2px rgba(74, 157, 244, 0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    background-image: linear-gradient(135deg, 
+        rgba(120, 120, 120, 0.05) 0%, 
+        rgba(20, 20, 20, 0.05) 100%);
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-clear {
-    grid-column: 1 / span 2;
-    grid-row: 2;
+    grid-area: clear;
 }
 
 .btn-backspace {
-    grid-column: 3;
-    grid-row: 2;
+    grid-area: backspace;
 }
 
 .btn-1 {
-    grid-column: 3;
-    grid-row: 5;
+    grid-area: one;
 }
 
 .btn-2 {
-    grid-column: 2;
-    grid-row: 5;
+    grid-area: two;
 }
 
 .btn-3 {
-    grid-column: 1;
-    grid-row: 5;
+    grid-area: three;
 }
 
 .btn-4 {
-    grid-column: 3;
-    grid-row: 4;
+    grid-area: four;
 }
 
 .btn-5 {
-    grid-column: 2;
-    grid-row: 4;
+    grid-area: five;
 }
 
 .btn-6 {
-    grid-column: 1;
-    grid-row: 4;
+    grid-area: six;
 }
 
 .btn-7 {
-    grid-column: 3;
-    grid-row: 3;
+    grid-area: seven;
 }
 
 .btn-8 {
-    grid-column: 2;
-    grid-row: 3;
+    grid-area: eight;
 }
 
 .btn-9 {
-    grid-column: 1;
-    grid-row: 3;
+    grid-area: nine;
 }
 
 .btn-0 {
-    grid-column: 2;
-    grid-row: 6;
+    grid-area: zero;
 }
 
 .btn-multiply {
-    grid-column: 4;
-    grid-row: 2;
+    grid-area: multiply;
 }
 
 .btn-divide {
-    grid-column: 4;
-    grid-row: 3;
+    grid-area: divide;
 }
 
 .btn-add {
-    grid-column: 4;
-    grid-row: 4;
+    grid-area: add;
 }
 
 .btn-subtract {
-    grid-column: 4;
-    grid-row: 5;
+    grid-area: subtract;
 }
 
 .btn-equals {
-    grid-column: 3 / span 2;
-    grid-row: 6;
+    grid-area: equals;
 }
 
 .btn-decimal {
-    grid-column: 1;
-    grid-row: 6;
+    grid-area: decimal;
 }
 
 .btn-display:hover {
-    background-color: black;
     cursor: auto;
+}
+
+.btn-display::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -50%; }
+    100% { left: 150%; }
 }
 
 .btn-clear,
 .btn-backspace {
-    background-color: rgb(239, 136, 136);
+    background-color: #ff2b7d;
+    color: white;
 }
 
 .btn-clear:hover,
 .btn-backspace:hover {
-    background-color: rgb(147, 54, 54);
+    background-color: #ff5293;
 }
 
 .btn-multiply,
@@ -155,50 +196,38 @@ body {
 .btn-subtract,
 .btn-equals,
 .btn-decimal {
-    background-color: rgb(52, 77, 83);
+    background-color: #2a3440;
+    color: #e5a468;
 }
 
-.btn-clear,
-.btn-9,
-.btn-6,
-.btn-3,
+
+.btn-num {
+    color: #fad430;
+}
+
 .btn-decimal {
-    border-left: 1px solid black;
-}
-
-.btn-clear,
-.btn-backspace,
-.btn-multiply {
-    border-top: 1px solid black;
-}
-
-.btn-clear,
-.btn-backspace,
-.btn-multiply,
-.btn-9,
-.btn-8,
-.btn-7,
-.btn-6,
-.btn-5,
-.btn-4,
-.btn-3,
-.btn-2,
-.btn-1,
-.btn-0,
-.btn-decimal,
-.btn-equals,
-.btn-multiply,
-.btn-divide,
-.btn-add,
-.btn-subtract {
-    border-bottom: 1px solid black;
-}
-
-.btn-key {
-    border-right: 1px solid black;
+    color: #c27adb; 
 }
 
 .active-operation {
-    border: 2px solid #a8e6cf !important; /* Pastel green border */
-    box-shadow: 0 0 5px #a8e6cf;
+    border: 2px solid #c27adb !important; 
+    box-shadow: 0 0 8px #c27adb;
+    background-color: #2d3a47;
+}
+
+.btn-operation {
+    background-color: #1a2229;
+    box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        0 2px 0 #121920,
+        0 3px 3px rgba(0,0,0,0.3);
+}
+
+.btn-equals {
+    background-color: #1a2229;
+    color: #0fdd9d;
+}
+
+.container {
+    gap: 2px;
 }
